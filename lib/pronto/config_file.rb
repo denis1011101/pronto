@@ -13,7 +13,7 @@ module Pronto
         'access_token' => nil,
         'api_endpoint' => 'https://api.github.com/',
         'web_endpoint' => 'https://github.com/',
-        'review_type' => 'request_changes'
+        'review_type' => 'comment'
       },
       'gitlab' => {
         'slug' => nil,

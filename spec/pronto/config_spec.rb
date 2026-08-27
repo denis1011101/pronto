@@ -69,6 +69,11 @@ module Pronto
       end
 
       context 'from config hash' do
+        let(:config_hash) { { 'github' => { 'review_type' => 'request_changes' } } }
+        it { should == 'REQUEST_CHANGES' }
+      end
+
+      context 'with an unsupported value' do
         let(:config_hash) { { 'github' => { 'review_type' => 'something_else' } } }
         it { should == 'COMMENT' }
       end
