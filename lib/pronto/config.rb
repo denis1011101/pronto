@@ -6,8 +6,9 @@ module Pronto
 
     %w[github gitlab bitbucket].each do |service|
       ConfigFile::EMPTY[service].each do |key, _|
+        next if service == 'github' && key == 'review_type'
+
         name = "#{service}_#{key}"
-        next if name == 'github_review_type'
         define_method(name) { ENV["PRONTO_#{name.upcase}"] || @config_hash[service][key] }
       end
     end
@@ -29,6 +30,7 @@ module Pronto
     def github_review_type
       review_type =
         ENV['PRONTO_GITHUB_REVIEW_TYPE'] ||
+        @config_hash['github_review_type'] ||
         @config_hash.fetch('github', {}).fetch('review_type', false)
 
       if review_type == 'request_changes'

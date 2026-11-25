@@ -78,6 +78,11 @@ module Pronto
         it { should == 'COMMENT' }
       end
 
+      context 'from the legacy top-level key' do
+        let(:config_hash) { { 'github_review_type' => 'request_changes' } }
+        it { should == 'REQUEST_CHANGES' }
+      end
+
       context 'default' do
         let(:config_hash) { ConfigFile::EMPTY }
         it { should == 'COMMENT' }

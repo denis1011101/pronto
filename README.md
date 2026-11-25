@@ -132,6 +132,13 @@ Note: In case no environment variable or config setting is specified in `.pronto
 $ PRONTO_WARNINGS_PER_REVIEW=30 PRONTO_GITHUB_ACCESS_TOKEN=token pronto run -f github_pr_review -c origin/master
 ```
 
+Reviews are submitted as `COMMENT` by default. Set `review_type` to `request_changes`
+to submit them as `REQUEST_CHANGES` instead:
+
+```sh
+$ PRONTO_GITHUB_REVIEW_TYPE=request_changes PRONTO_GITHUB_ACCESS_TOKEN=token pronto run -f github_pr_review -c origin/master
+```
+
 Use `GithubStatusFormatter` to submit [commit status](https://github.com/blog/1227-commit-status-api):
 
 ```sh
@@ -295,6 +302,7 @@ github:
   access_token: B26354
   api_endpoint: https://api.github.com/
   web_endpoint: https://github.com/
+  review_type: comment # or request_changes
 gitlab:
   slug: 1234567 # gitlab's project ID
   api_private_token: 46751
